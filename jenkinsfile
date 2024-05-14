@@ -1,28 +1,38 @@
-pipeline{
-
-agent any
-
-stages{
-    stages{
-        stage('build')
-        steps{
-            sh 'npm install'
+pipeline {
+    agent any
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub_lab3')
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'echo "Test is running"'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t danial930/jenkins-integration:latest .'
+            }
+        }
+        stage('Login') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        stage('Push') {
+            steps {
+                sh 'docker push danial930/jenkins-integration:latest'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'echo "Deploying the application"'
+            }
         }
     }
-    stage('test'){
-        steps{
-            sh 'echo "testing the application"'
-        }
-
-    }
-    stage('deploy'){
-        steps{
-            sh 'echo "deploying the application"'
-        }
-    }
-}
-
-
-
-
 }
