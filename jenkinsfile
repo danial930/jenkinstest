@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh 'echo "danial" | sudo -S docker build -t danial930/jenkins-integration:latest .'
+                sh 'echo "5e28502f55c7437a84b70885acaf2016" | sudo -S docker build -t danial930/jenkins-integration:latest .'
             }
         }
         stage('Login') {
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Push') {
             steps {
-                sh 'echo "danial" | sudo docker push danial930/jenkins-integration:latest'
+                sh 'echo "5e28502f55c7437a84b70885acaf2016" | sudo docker push danial930/jenkins-integration:latest'
             }
         }
         stage('Deploy') {
