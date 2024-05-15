@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh 'sudo docker build -t danial930/jenkins-integration:latest .'
+                sh 'docker build -t danial930/jenkins-integration:latest .'
             }
         }
         stage('Login') {
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Push') {
             steps {
-                sh 'sudo docker push danial930/jenkins-integration:latest'
+                sh 'docker push danial930/jenkins-integration:latest'
             }
         }
         stage('Deploy') {
