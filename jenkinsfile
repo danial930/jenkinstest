@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub_lab3')
+        DOCKERHUB_CREDENTIALS = credentials('jenkins-ass3')
     }
     stages {
         stage('Build') {
